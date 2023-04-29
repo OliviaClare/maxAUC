@@ -1,0 +1,7 @@
+import(RcppArmadillo, sandwich)
+importFrom(Rcpp, evalCpp)
+importFrom("MASS", "mvrnorm")
+importFrom("stats", "binomial", "glm", "optim", "pnorm", "rbinom")
+useDynLib(maxAUC, .registration = TRUE)
+
+export(auccp, smrce, sim4, varauc_l1)

@@ -1,0 +1,13 @@
+Package: maxAUC
+Type: Package
+Title: AUC maximization and performance estimation for biomarker combination
+Version: 1.0
+Date: 2023-04-28
+Author: Yuxuan Chen <yuxuan.chen@emory.edu>
+Maintainer: Yuxuan Chen <yuxuan.chen@emory.edu>
+Description: An implementation of AUC maximization for biomarker combination
+Encoding: UTF-8
+License: GPL (>= 2)
+Imports: Rcpp (>= 1.0.4.6), MASS, sandwich, stats 
+LinkingTo: Rcpp, RcppArmadillo
+Depends: Rcpp, RcppArmadillo

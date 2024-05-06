@@ -26,5 +26,5 @@ Maintainer: \packageMaintainer{maxAUC}
 dat.train <- sim4(100, markers=3, scenario = 1, pd = 0.3, design="cohort")
 Y = dat.train$y
 X = as.matrix(dat.train[,-1])
-auccp(X, Y)
+aucmax(X, Y)
 }

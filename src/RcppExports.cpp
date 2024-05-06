@@ -97,20 +97,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// eauc_l1
-double eauc_l1(arma::vec beta, arma::mat X, arma::vec Y, bool silence);
-RcppExport SEXP _maxAUC_eauc_l1(SEXP betaSEXP, SEXP XSEXP, SEXP YSEXP, SEXP silenceSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::vec >::type beta(betaSEXP);
-    Rcpp::traits::input_parameter< arma::mat >::type X(XSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type Y(YSEXP);
-    Rcpp::traits::input_parameter< bool >::type silence(silenceSEXP);
-    rcpp_result_gen = Rcpp::wrap(eauc_l1(beta, X, Y, silence));
-    return rcpp_result_gen;
-END_RCPP
-}
 // eauc_sort
 double eauc_sort(arma::vec beta, arma::mat X, arma::vec Y, bool silence);
 RcppExport SEXP _maxAUC_eauc_sort(SEXP betaSEXP, SEXP XSEXP, SEXP YSEXP, SEXP silenceSEXP) {
@@ -122,18 +108,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::vec >::type Y(YSEXP);
     Rcpp::traits::input_parameter< bool >::type silence(silenceSEXP);
     rcpp_result_gen = Rcpp::wrap(eauc_sort(beta, X, Y, silence));
-    return rcpp_result_gen;
-END_RCPP
-}
-// triang
-double triang(double x, double sigma0);
-RcppExport SEXP _maxAUC_triang(SEXP xSEXP, SEXP sigma0SEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type x(xSEXP);
-    Rcpp::traits::input_parameter< double >::type sigma0(sigma0SEXP);
-    rcpp_result_gen = Rcpp::wrap(triang(x, sigma0));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -152,22 +126,9 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// varauc_l1
-double varauc_l1(arma::vec beta, arma::mat X, arma::vec Y);
-RcppExport SEXP _maxAUC_varauc_l1(SEXP betaSEXP, SEXP XSEXP, SEXP YSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::vec >::type beta(betaSEXP);
-    Rcpp::traits::input_parameter< arma::mat >::type X(XSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type Y(YSEXP);
-    rcpp_result_gen = Rcpp::wrap(varauc_l1(beta, X, Y));
-    return rcpp_result_gen;
-END_RCPP
-}
 // dtauc_opt
-arma::mat dtauc_opt(arma::vec beta, arma::vec beta_k, arma::mat X, arma::vec Y, double sigma0, double w, double t);
-RcppExport SEXP _maxAUC_dtauc_opt(SEXP betaSEXP, SEXP beta_kSEXP, SEXP XSEXP, SEXP YSEXP, SEXP sigma0SEXP, SEXP wSEXP, SEXP tSEXP) {
+arma::mat dtauc_opt(arma::vec beta, arma::vec beta_k, arma::mat X, arma::vec Y, double sigma0);
+RcppExport SEXP _maxAUC_dtauc_opt(SEXP betaSEXP, SEXP beta_kSEXP, SEXP XSEXP, SEXP YSEXP, SEXP sigma0SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -176,15 +137,52 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::mat >::type X(XSEXP);
     Rcpp::traits::input_parameter< arma::vec >::type Y(YSEXP);
     Rcpp::traits::input_parameter< double >::type sigma0(sigma0SEXP);
+    rcpp_result_gen = Rcpp::wrap(dtauc_opt(beta, beta_k, X, Y, sigma0));
+    return rcpp_result_gen;
+END_RCPP
+}
+// varauc
+double varauc(arma::vec beta, arma::mat X, arma::vec Y);
+RcppExport SEXP _maxAUC_varauc(SEXP betaSEXP, SEXP XSEXP, SEXP YSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type beta(betaSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type X(XSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type Y(YSEXP);
+    rcpp_result_gen = Rcpp::wrap(varauc(beta, X, Y));
+    return rcpp_result_gen;
+END_RCPP
+}
+// ddnormcpp
+arma::vec ddnormcpp(arma::vec x);
+RcppExport SEXP _maxAUC_ddnormcpp(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(ddnormcpp(x));
+    return rcpp_result_gen;
+END_RCPP
+}
+// hessianpw
+arma::mat hessianpw(arma::vec beta, arma::mat X, arma::vec Y, arma::mat var, double w);
+RcppExport SEXP _maxAUC_hessianpw(SEXP betaSEXP, SEXP XSEXP, SEXP YSEXP, SEXP varSEXP, SEXP wSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type beta(betaSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type X(XSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type Y(YSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type var(varSEXP);
     Rcpp::traits::input_parameter< double >::type w(wSEXP);
-    Rcpp::traits::input_parameter< double >::type t(tSEXP);
-    rcpp_result_gen = Rcpp::wrap(dtauc_opt(beta, beta_k, X, Y, sigma0, w, t));
+    rcpp_result_gen = Rcpp::wrap(hessianpw(beta, X, Y, var, w));
     return rcpp_result_gen;
 END_RCPP
 }
-// vn
-arma::mat vn(arma::vec beta, arma::mat X, arma::vec Y, arma::mat var, int anchor);
-RcppExport SEXP _maxAUC_vn(SEXP betaSEXP, SEXP XSEXP, SEXP YSEXP, SEXP varSEXP, SEXP anchorSEXP) {
+// meatpw
+arma::mat meatpw(arma::vec beta, arma::mat X, arma::vec Y, arma::mat var);
+RcppExport SEXP _maxAUC_meatpw(SEXP betaSEXP, SEXP XSEXP, SEXP YSEXP, SEXP varSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -192,14 +190,13 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::mat >::type X(XSEXP);
     Rcpp::traits::input_parameter< arma::vec >::type Y(YSEXP);
     Rcpp::traits::input_parameter< arma::mat >::type var(varSEXP);
-    Rcpp::traits::input_parameter< int >::type anchor(anchorSEXP);
-    rcpp_result_gen = Rcpp::wrap(vn(beta, X, Y, var, anchor));
+    rcpp_result_gen = Rcpp::wrap(meatpw(beta, X, Y, var));
     return rcpp_result_gen;
 END_RCPP
 }
-// an
-arma::mat an(arma::vec beta, arma::mat X, arma::vec Y, arma::mat var, int anchor);
-RcppExport SEXP _maxAUC_an(SEXP betaSEXP, SEXP XSEXP, SEXP YSEXP, SEXP varSEXP, SEXP anchorSEXP) {
+// varbeta
+arma::mat varbeta(arma::vec beta, arma::mat X, arma::vec Y, arma::mat var, double w);
+RcppExport SEXP _maxAUC_varbeta(SEXP betaSEXP, SEXP XSEXP, SEXP YSEXP, SEXP varSEXP, SEXP wSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -207,23 +204,8 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::mat >::type X(XSEXP);
     Rcpp::traits::input_parameter< arma::vec >::type Y(YSEXP);
     Rcpp::traits::input_parameter< arma::mat >::type var(varSEXP);
-    Rcpp::traits::input_parameter< int >::type anchor(anchorSEXP);
-    rcpp_result_gen = Rcpp::wrap(an(beta, X, Y, var, anchor));
-    return rcpp_result_gen;
-END_RCPP
-}
-// dn
-arma::mat dn(arma::vec beta, arma::mat X, arma::vec Y, arma::mat var, int anchor);
-RcppExport SEXP _maxAUC_dn(SEXP betaSEXP, SEXP XSEXP, SEXP YSEXP, SEXP varSEXP, SEXP anchorSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::vec >::type beta(betaSEXP);
-    Rcpp::traits::input_parameter< arma::mat >::type X(XSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type Y(YSEXP);
-    Rcpp::traits::input_parameter< arma::mat >::type var(varSEXP);
-    Rcpp::traits::input_parameter< int >::type anchor(anchorSEXP);
-    rcpp_result_gen = Rcpp::wrap(dn(beta, X, Y, var, anchor));
+    Rcpp::traits::input_parameter< double >::type w(wSEXP);
+    rcpp_result_gen = Rcpp::wrap(varbeta(beta, X, Y, var, w));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -235,15 +217,14 @@ static const R_CallMethodDef CallEntries[] = {
     {"_maxAUC_vn_anchor", (DL_FUNC) &_maxAUC_vn_anchor, 4},
     {"_maxAUC_dn_anchor", (DL_FUNC) &_maxAUC_dn_anchor, 4},
     {"_maxAUC_newton_raphson_anchor", (DL_FUNC) &_maxAUC_newton_raphson_anchor, 7},
-    {"_maxAUC_eauc_l1", (DL_FUNC) &_maxAUC_eauc_l1, 4},
     {"_maxAUC_eauc_sort", (DL_FUNC) &_maxAUC_eauc_sort, 4},
-    {"_maxAUC_triang", (DL_FUNC) &_maxAUC_triang, 2},
     {"_maxAUC_tauc_sort", (DL_FUNC) &_maxAUC_tauc_sort, 5},
-    {"_maxAUC_varauc_l1", (DL_FUNC) &_maxAUC_varauc_l1, 3},
-    {"_maxAUC_dtauc_opt", (DL_FUNC) &_maxAUC_dtauc_opt, 7},
-    {"_maxAUC_vn", (DL_FUNC) &_maxAUC_vn, 5},
-    {"_maxAUC_an", (DL_FUNC) &_maxAUC_an, 5},
-    {"_maxAUC_dn", (DL_FUNC) &_maxAUC_dn, 5},
+    {"_maxAUC_dtauc_opt", (DL_FUNC) &_maxAUC_dtauc_opt, 5},
+    {"_maxAUC_varauc", (DL_FUNC) &_maxAUC_varauc, 3},
+    {"_maxAUC_ddnormcpp", (DL_FUNC) &_maxAUC_ddnormcpp, 1},
+    {"_maxAUC_hessianpw", (DL_FUNC) &_maxAUC_hessianpw, 5},
+    {"_maxAUC_meatpw", (DL_FUNC) &_maxAUC_meatpw, 4},
+    {"_maxAUC_varbeta", (DL_FUNC) &_maxAUC_varbeta, 5},
     {NULL, NULL, 0}
 };
 

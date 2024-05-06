@@ -25,39 +25,35 @@ newton_raphson_anchor <- function(theta_initial, tol, iteration, gamma, X, Y, va
     .Call(`_maxAUC_newton_raphson_anchor`, theta_initial, tol, iteration, gamma, X, Y, var)
 }
 
-eauc_l1 <- function(beta, X, Y, silence) {
-    .Call(`_maxAUC_eauc_l1`, beta, X, Y, silence)
-}
-
 eauc_sort <- function(beta, X, Y, silence) {
     .Call(`_maxAUC_eauc_sort`, beta, X, Y, silence)
-}
-
-triang <- function(x, sigma0) {
-    .Call(`_maxAUC_triang`, x, sigma0)
 }
 
 tauc_sort <- function(beta, X, Y, sigma0, silence) {
     .Call(`_maxAUC_tauc_sort`, beta, X, Y, sigma0, silence)
 }
 
-varauc_l1 <- function(beta, X, Y) {
-    .Call(`_maxAUC_varauc_l1`, beta, X, Y)
+dtauc_opt <- function(beta, beta_k, X, Y, sigma0) {
+    .Call(`_maxAUC_dtauc_opt`, beta, beta_k, X, Y, sigma0)
 }
 
-dtauc_opt <- function(beta, beta_k, X, Y, sigma0, w, t) {
-    .Call(`_maxAUC_dtauc_opt`, beta, beta_k, X, Y, sigma0, w, t)
+varauc <- function(beta, X, Y) {
+    .Call(`_maxAUC_varauc`, beta, X, Y)
 }
 
-vn <- function(beta, X, Y, var, anchor) {
-    .Call(`_maxAUC_vn`, beta, X, Y, var, anchor)
+ddnormcpp <- function(x) {
+    .Call(`_maxAUC_ddnormcpp`, x)
 }
 
-an <- function(beta, X, Y, var, anchor) {
-    .Call(`_maxAUC_an`, beta, X, Y, var, anchor)
+hessianpw <- function(beta, X, Y, var, w) {
+    .Call(`_maxAUC_hessianpw`, beta, X, Y, var, w)
 }
 
-dn <- function(beta, X, Y, var, anchor) {
-    .Call(`_maxAUC_dn`, beta, X, Y, var, anchor)
+meatpw <- function(beta, X, Y, var) {
+    .Call(`_maxAUC_meatpw`, beta, X, Y, var)
+}
+
+varbeta <- function(beta, X, Y, var, w) {
+    .Call(`_maxAUC_varbeta`, beta, X, Y, var, w)
 }
 

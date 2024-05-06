@@ -1,26 +1,26 @@
-\name{auccp}
-\alias{auccp}
+\name{aucmax}
+\alias{aucmax}
 \title{max AUC estimator}
 \description{empirical maximization of AUC}
-\usage{auccp(X, Y, sigma1=0.5, iter=20, outer=60, eps=1e-5, sig.eps=1e-2,
-                         beta.0=NA, tol=1e-2,
-                         alpha=0.8, alphat=0.8, w=2, t=1/sigma1, silence=FALSE)}
+\usage{aucmax(X, Y,sigma1=1, sig.eps=1e-2, outer=60, eps=1e-8,
+                            beta.0=NA, alpha=0.9, w=2,
+                            var.method="selfinduced", tol=2, inf_iter = 10,
+                            silence=FALSE)}
 \arguments{
   \item{X}{matrix of biomarker values, with each row
   containing multiple markers from an individual.}
   \item{Y}{vector of disease status}
-  \item{sigma1}{initial bandwidth for smoothed AUC}
-  \item{iter}{maximum iteration for vaiance estimation}
+  \item{sigma1}{initial bandwidth for smoothing empirical AUC}
+  \item{sig.eps}{The absolute convergence tolerance for sigma (bandwidth)}
   \item{outer}{maximum iteration for outer loop in point estimation}
   \item{eps}{The absolute convergence tolerance for AUC}
-  \item{sig.eps}{The absolute convergence tolerance for sigma}
-  \item{beta.0}{initial coefficient estimate.}
-  \item{tol}{The absolute convergence tolerance for covariance matrix}
+  \item{beta.0}{initial coefficient estimate}
   \item{alpha}{reduction factor in the sequence of approximation parameter sigma.}
-  \item{alphat}{reduction factor in the sequence of approximation parameter t.}
   \item{w}{weight for l2 norm of combination coefficient in the objective
   function (w>sqrt(2) guarantees sound asymptotic properties).}
-  \item{t}{initial value for t}
+  \item{var.method}{Whether to compute variance estimate, can be NA or "selfinduced". Default value is "selfinduced".}
+  \item{tol}{The absolute convergence tolerance for covariance matrix}
+  \item{inf_iter}{maximum iteration in variance estimation}
   \item{silence}{whether to print intermediate results}
 
 }
@@ -37,7 +37,7 @@
 dat.train <- sim4(100, markers=3, scenario = 1, pd = 0.3, design="cohort")
 Y = dat.train$y
 X = as.matrix(dat.train[,-1])
-auccp(X, Y)
+aucmax(X, Y)
 }
 \author{Yuxuan Chen}
 \note{Non-commercial use only. No warranty is implied. Please report bugs
